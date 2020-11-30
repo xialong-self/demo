@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>AJAX TEST</title>
+    <script type="text/javascript" src="jquery-3.5.1.js"></script>
+</head>
+<body>
+
+<h2>AJAX</h2>
+
+<form id="upload" >
+    <input name="id" id="id"  >
+    <input type="button" value=" 保  存 " onclick="login()"/>
+</form>
+<form id="insert" >
+    <input name="message" id="message"  >
+    <input type="button" value="提交" onclick="insert()"/>
+</form>
+    <script type="text/javascript">
+        function login() {
+            $.ajax({
+                type: "GET",//方法类型，或者用GET
+                dataType: "json",//预期服务器返回的数据类型，可以改成json
+                url: "/getMessage" ,//ip:端口/项目名称/Servlet名称
+                data: $('#upload').serialize(),//获取表单里的数据到这里
+                success: function (result) {
+                    if (result["message"]!= null) {
+                        alert(result["message"]);
+                    };
+                },
+                error : function() {
+                    alert("异常！");
+                }
+            });
+        };
+        function insert() {
+            $.ajax({
+                type: "POST",//方法类型，或者用GET
+                dataType: "json",//预期服务器返回的数据类型，可以改成json
+                url: "/inertMessage" ,//ip:端口/项目名称/Servlet名称
+                data: $('#insert').serialize(),//获取表单里的数据到这里
+                success: function (result) {
+                    if (result["msg"]!= null) {
+                        alert(result["msg"]);
+                    };
+                },
+                error : function(result) {
+                    alert(result["msg"]);
+                }
+            });
+        };
+
+</script>
+</body>
+</html>

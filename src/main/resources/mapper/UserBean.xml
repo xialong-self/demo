@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.UserMapper">
+
+    <select id="getInfo" parameterType="String" resultType="com.example.demo.bean.UserBean">
+        SELECT * FROM user WHERE name = #{name} AND password = #{password}
+    </select>
+
+    <insert id="saveUser"   parameterType="String" useGeneratedKeys="true" keyProperty="id">
+  	    INSERT INTO user (id,name,password,userType,sex,csrq,hobby,Email,user_describe) VALUES(#{id},#{name},#{password},#{userType},#{sex},#{csrq},#{hobby},#{email},#{describe})
+    </insert>
+
+    <!-- select操作,parameterType="int"表示该查询语句需要一个int类型的参数,resultType="user"表示返回的是一个user对象 -->
+    <select id="selectUser" parameterType="String" resultType="String">
+  	   SELECT 1 FROM user WHERE name = #{name} limit 1
+    </select>
+
+<!--    &lt;!&ndash; update操作 ,parameterType="user"表示该更新语句需要一个user对象作为参数&ndash;&gt;-->
+<!--    <update id="modifyUser" parameterType="user">-->
+<!--      UPDATE user SET name = #{name},sex = #{sex},age = #{age} WHERE id = #{id}-->
+<!--    </update>-->
+
+<!--    &lt;!&ndash; delete操作 parameterType="int"表示该查询语句需要一个int类型的参数&ndash;&gt;-->
+<!--    <delete id="removeUser" parameterType="int">-->
+<!--  	  DELETE FROM user WHERE id = #{id}-->
+<!--  </delete>-->
+
+
+</mapper>

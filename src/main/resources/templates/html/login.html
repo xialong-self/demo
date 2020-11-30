@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+    <script type="text/javascript" src="jquery-3.5.1.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+            background: url(/img/bj.jpg) no-repeat 0px 0px;
+            background-size: 100% 100%;
+            -moz-background-size: 100% 100%;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+        #loginDiv {
+            width: 37%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 300px;
+            background-color: rgba(75, 81, 95, 0.3);
+            box-shadow: 7px 7px 17px rgba(52, 56, 66, 0.5);
+            border-radius: 5px;
+        }
+
+        #name_trip {
+            margin-left: 50px;
+            color: red;
+        }
+
+        p {
+            margin-top: 30px;
+            margin-left: 20px;
+            color: azure;
+        }
+
+        input {
+            margin-left: 15px;
+            border-radius: 5px;
+            border-style: hidden;
+            height: 30px;
+            width: 140px;
+            background-color: rgba(216, 191, 216, 0.5);
+            outline: none;
+            color: #f0edf3;
+            padding-left: 10px;
+        }
+
+        .button {
+            border-color: cornsilk;
+            background-color: rgba(100, 149, 237, .7);
+            color: aliceblue;
+            border-style: hidden;
+            border-radius: 5px;
+            width: 100px;
+            height: 31px;
+            font-size: 16px;
+        }
+        .button:hover {
+            border-color: cornsilk;
+            background-color: rgba(4, 14, 33, 0.7);
+            color: aliceblue;
+            border-style: hidden;
+            border-radius: 5px;
+            width: 100px;
+            height: 31px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+<div id="loginDiv">
+    <form  id="form" >
+        <h1 style="text-align: center;color: aliceblue;">LOGIN  IN</h1>
+        <p>UserName:<input id="idName" name="name" type="text"><label id="name_trip"></label></p>
+
+        <p>Password:   <input id="idPassword" name="password" type="password"><label id="password_trip"></label></p>
+
+        <div style="text-align: center;margin-top: 30px;margin-left: 0px">
+            <input type="button" class="button" value="login up" onclick="login()">
+            <input type="reset" class="button" value="reset">
+            <a href="register" target="_top">
+                <input type="button" class="button"  value="registered">
+            </a>
+        </div>
+    </form>
+</div>
+
+</body>
+<script type="text/javascript">
+    function trip(obj, trip) {
+        document.getElementById(obj).innerHTML = "<b>" + trip + "</b>";
+    }
+
+    function checkForm2() {
+        //获取用户名输入项
+        const userName = document.getElementById("idName");
+        const uName = userName.value;
+        if (uName.length ==0) {
+            trip("name_trip", "用户名不能为空！");
+            return false;
+        }else {
+
+        }
+
+        //密码长度大于6 和确认必须一致
+        const password = document.getElementById("idPassword");
+        const userPass = password.value;
+        if (userPass.length ==0) {
+            trip("password_trip", "密码不能为空!");
+            return false;
+        }else {
+
+        }
+        return true;
+    }
+    function login() {
+        if (checkForm2()) {
+            $.ajax({
+                type: "POST",//方法类型，或者用GET
+                dataType: "json",//预期服务器返回的数据类型，可以改成json
+                url: "/loginIn",//ip:端口/项目名称/Servlet名称
+                data: $('#form').serialize(),//获取表单里的数据到这里
+                success: function (result) {
+                    if (result["data"] == 0) {
+                        alert(result["msg"]);
+                    } else if (result["data"] == 1) {
+                        window.location.href = "leave.html";
+                    };
+                },
+                error: function () {
+                }
+            });
+        }
+        return false
+    }
+
+</script>
+</html>
