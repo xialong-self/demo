@@ -1,10 +1,15 @@
 package com.example.demo;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.JWTVerifier;
+import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import com.example.demo.bean.MessageBean;
 import com.example.demo.bean.UserBean;
 import com.example.demo.service.MessageService;
 import com.example.demo.service.UserService;
 import com.example.demo.utils.DateTimeUtils;
+import com.example.demo.utils.TokenUse;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +18,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 
 @RunWith(SpringRunner.class)
@@ -24,6 +30,36 @@ public class DemoApplicationTests {
 
     @Autowired
     MessageService messageService;
+
+    @Test
+    public void token(){
+        String token = TokenUse.sign("夏龙","1451122318");
+        //这是生成的token
+        System.out.println(token);
+        //这里验证token
+        boolean bo= TokenUse.tokenVerify("eyJ0eXBlIjoiSldUIiwiYWxnIjoiSFMyNTYiLCJ0eXAiOiJKV1QifQ.eyJwYXNzd29yZCI6IjE0NTExMjIzMTgiLCJuYW1lIjoi5aSP6b6ZIiwiVGltZSI6MTYwNjkwMjI4OTczNSwiZXhwIjoxNjA2OTA0MDg5fQ.Pz3mviHBfqj_6J5OM6aabaBueB_SsdeeviuXwIHXpos");
+        System.out.println(bo);
+//        try {
+//            final String tokenSecRet = "fde35b32-0f47-46be-ae2a-49bcb7ed7d7f";
+//            Algorithm algorithm = Algorithm.HMAC256(tokenSecRet);
+//            JWTVerifier verifier = JWT.require(algorithm).build();
+//            System.out.println(verifier);
+//            //验证
+//            DecodedJWT decodedJWT = verifier.verify("token");
+//            System.out.println(decodedJWT);
+//        } catch (Exception e) {
+//
+//        }
+    }
+
+    @Test
+    public void userList(){
+        List<UserBean> list=userService.list();
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println(list.get(i).toString());
+        }
+        
+    }
 
     @Test
     public void userInsert(){

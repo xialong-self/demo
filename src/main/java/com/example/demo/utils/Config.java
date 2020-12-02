@@ -1,5 +1,6 @@
 package com.example.demo.utils;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -13,17 +14,23 @@ import javax.annotation.Resource;
  * @author 夏龙
  * @date 2020-11-24
  */
-@Component
 @Configuration
 public class Config extends WebMvcConfigurationSupport {
-    @Resource
-    private MyInterceptor1 baseInterceptor;
+
+
+    @Bean
+    public MyInterceptor1 getSessionInterceptor() {
+        return new MyInterceptor1();
+    }
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(baseInterceptor)
+        MyInterceptor1 baseInterceptor=new MyInterceptor1();
+        registry.addInterceptor(baseInterceptor).addPathPatterns("/**")
                 //需要配置2：----------- 告知拦截器：/static/admin/** 与 /static/user/** 不需要拦截 （配置的是 路径）
-                .excludePathPatterns("/static/**", "/templates/**");
+                .excludePathPatterns("/login","/loginIn","/register", "/templates/**","/js/**","/img/**","/css/**");
+
+        super.addInterceptors(registry);
     }
 
     /**

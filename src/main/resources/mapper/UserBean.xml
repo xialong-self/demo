@@ -15,7 +15,12 @@
   	   SELECT 1 FROM user WHERE name = #{name} limit 1
     </select>
 
-<!--    &lt;!&ndash; update操作 ,parameterType="user"表示该更新语句需要一个user对象作为参数&ndash;&gt;-->
+    <!-- select操作,parameterType="int"表示该查询语句需要一个int类型的参数,resultType="user"表示返回的是一个user对象 -->
+    <select id="userList"  resultType="com.example.demo.bean.UserBean">
+  	   SELECT * FROM user
+    </select>
+
+    <!-- update操作 ,parameterType="user"表示该更新语句需要一个user对象作为参数-->
 <!--    <update id="modifyUser" parameterType="user">-->
 <!--      UPDATE user SET name = #{name},sex = #{sex},age = #{age} WHERE id = #{id}-->
 <!--    </update>-->
@@ -23,7 +28,7 @@
 <!--    &lt;!&ndash; delete操作 parameterType="int"表示该查询语句需要一个int类型的参数&ndash;&gt;-->
 <!--    <delete id="removeUser" parameterType="int">-->
 <!--  	  DELETE FROM user WHERE id = #{id}-->
-<!--  </delete>-->
+<!--    </delete>-->
 
 
 </mapper>

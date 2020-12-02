@@ -5,6 +5,20 @@
     <select id="getMessage" parameterType="int" resultType="com.example.demo.bean.MessageBean">
         SELECT * FROM message WHERE id = #{id}
     </select>
+    <!--    查询全部数据-->
+    <select id="listMessage" parameterType="int" resultType="com.example.demo.bean.MessageBean">
+        SELECT * FROM message WHERE xt_zxbz='0'
+    </select>
+
+    <!--    修改数据-->
+    <update id="updateMessage" parameterType="int" >
+        UPDATE message set () values () WHERE  id=#{id}
+    </update>
+
+    <!--    注销数据-->
+    <update id="updateDeleteMessage" parameterType="int" >
+        UPDATE message xt_zxbz='1'  WHERE  id=#{id}
+    </update>
 
     <select id="save"  resultType="com.example.demo.bean.MessageBean">
         insert into message (id,message,date) value (#{id},#{message},#{date})

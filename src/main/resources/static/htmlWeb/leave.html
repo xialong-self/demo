@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>AJAX TEST</title>
-    <script type="text/javascript" src="jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="../jquery-3.5.1.js"></script>
 </head>
 <body>
 
@@ -24,6 +24,9 @@
                 dataType: "json",//预期服务器返回的数据类型，可以改成json
                 url: "/getMessage" ,//ip:端口/项目名称/Servlet名称
                 data: $('#upload').serialize(),//获取表单里的数据到这里
+                beforeSend: function (request) {
+                    request.setRequestHeader("token", localStorage.token);
+                },
                 success: function (result) {
                     if (result["message"]!= null) {
                         alert(result["message"]);

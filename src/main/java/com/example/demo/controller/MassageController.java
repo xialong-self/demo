@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.bean.MessageBean;
 import com.example.demo.service.MessageService;
+import com.example.demo.utils.BaseController;
 import com.example.demo.utils.DateTimeUtils;
 import com.example.demo.utils.UniqId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ import java.util.UUID;
  * @date 2020-11-23
  */
 @RestController
-public class MassageController {
+public class MassageController extends BaseController {
     //将Service注入Web层
     final
     MessageService messageService;
@@ -31,7 +32,7 @@ public class MassageController {
         this.messageService = messageService;
     }
 
-
+    Map<String,Object> map = new HashMap();
 
     @RequestMapping("/getMessage")
     public Map<String,String> leave(int id){
@@ -55,7 +56,7 @@ public class MassageController {
         String id=UUID.randomUUID().toString().substring(32);
         messageBean.setId(id);
         messageBean.setDate(sqlDate);
-        Map<String,Object> map = new HashMap();
+
         try {
             messageService.save(messageBean);
             map.put("msg","信息保存成功");
@@ -67,8 +68,23 @@ public class MassageController {
             System.out.println("Message数据上传成功");
             return map;
         }
+    }
+
+    @RequestMapping("/listMessage")
+    @ResponseBody
+    public Map listMessage(MessageBean messageBean){
 
 
+            return map;
+
+    }
+
+    @RequestMapping("/deleteMessage")
+    @ResponseBody
+    public Map deleteMessage(MessageBean messageBean){
+
+
+        return map;
 
     }
 

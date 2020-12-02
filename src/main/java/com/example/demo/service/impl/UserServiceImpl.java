@@ -4,6 +4,9 @@ import com.example.demo.bean.UserBean;
 import com.example.demo.mapper.UserMapper;
 import com.example.demo.service.UserService;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+
 /**
  * @author 夏龙
  * @date 2020-11-23
@@ -36,6 +39,11 @@ public class UserServiceImpl implements UserService {
     public String selectUserTable(String name) {
 
        return userMapper.selectUser(name);
+    }
+
+    @Override
+    public List<UserBean> list() {
+        return userMapper.userList();
     }
 
 //    @Override

@@ -171,7 +171,7 @@
 
         <p> 自我介绍:</p>
         <div class="introduce">
-            <textarea name="user_describe" cols="30" id="introduceText" required rows="10"></textarea>
+            <textarea name="describe" cols="30" id="introduceText" required rows="10"></textarea>
             <label id="introduce_trip"></label>
         </div>
 
@@ -250,7 +250,7 @@
             $.ajax({
                 type: "POST",//方法类型，或者用GET
                 dataType: "json",//预期服务器返回的数据类型，可以改成json
-                url: "/userInsert",//ip:端口/项目名称/Servlet名称
+                url: "/loginUserInsert",//ip:端口/项目名称/Servlet名称
                 data: $('#insert').serialize(),//获取表单里的数据到这里
                 success: function (result) {
                     if (result["num"] == 0) {

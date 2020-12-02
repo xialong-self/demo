@@ -16,7 +16,8 @@ public class Test {
 
 
     public static void main(String[] args) {
-        String id = UUID.randomUUID().toString().substring(32);
+        String id = UUID.randomUUID().toString().replace("-","");
+
         System.out.println(id);
     }
 }

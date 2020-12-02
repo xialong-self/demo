@@ -141,6 +141,21 @@ public class UserBean {
     }
 
     @Override
+    public String toString() {
+        return "UserBean{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", userType='" + userType + '\'' +
+                ", sex='" + sex + '\'' +
+                ", csrq='" + csrq + '\'' +
+                ", hobby='" + hobby + '\'' +
+                ", email='" + email + '\'' +
+                ", describe='" + describe + '\'' +
+                '}';
+    }
+
+    @Override
     public int hashCode() {
         return Objects.hash(id, name, password, userType, sex, csrq, hobby, email, describe);
     }
