@@ -7,7 +7,7 @@
     </select>
     <!--    查询全部数据-->
     <select id="listMessage" parameterType="int" resultType="com.example.demo.bean.MessageBean">
-        SELECT * FROM message WHERE xt_zxbz='0'
+        SELECT * FROM message
     </select>
 
     <!--    修改数据-->

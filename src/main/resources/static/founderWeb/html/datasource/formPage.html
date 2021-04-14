@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<script>document.write('\<script src="../../js/include/commonInclude.js?v=' + Math.random() + '"\>\<\/script\>');</script>
+<script>document.write('\<script src="../../js/founder/founder.formTools.js?v=' + localVersion + '"\>\<\/script\>');</script>
+</head>
+<body>
+
+<form class="form-horizontal" role="form" style="width:95%" id="dataForm">
+	<input type="hidden" name="id" id="id">
+
+	<div class="form-group">
+        <label class="col-sm-2 control-label">数据源类型</label>
+        <div class="col-sm-10">
+            <select class="form-control" id="source_type" name="source_type">				
+				<option value="MYSQL">MYSQL</option>
+				<option value="ORACLE">ORACLE</option>
+			</select>
+        </div>       
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">URL</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="source_url" name="source_url" placeholder="请输入URL">
+        </div>        
+    </div>
+    
+    <div class="form-group">
+        <label class="col-sm-2 control-label">用户</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" id="source_username" name="source_username" placeholder="请输入用户名">
+        </div>
+        <label class="col-sm-2 control-label">密码</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" id="source_password" name="source_password" placeholder="请输入密码">
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label class="col-sm-2 control-label">备注</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="bz" name="bz" placeholder="请输入备注">
+        </div>
+    </div>
+</form>
+</body>
+<script type="text/javascript">
+	var submit_url = "#";
+	$(function(){
+		init();
+	});
+	
+	function init(){
+		var id = getUrlParam('id');
+		if(!id){//新增
+            initCreation();
+		}else{//修改
+            initUpdate(id);
+		}
+	}
+	
+	function initCreation() {
+        submit_url = basePath+"/datasource/insert";
+    }
+    
+    function initUpdate(zj) {
+        submit_url = basePath+"/datasource/update";
+        $("#id").val(id);
+
+        $.ajax({
+            url: basePath + '/datasource/queryByZj',
+            type: 'get',
+            dataType: 'json',
+            data :{
+                zj : zj
+            },
+            success : function(json){
+                loadFormData($("#dataForm"),json);
+            },
+            complete : function(){
+
+            }
+        });
+    }
+	
+    
+	function onSubmitClick(){
+        
+		var submit_data = getSubmitData($("#dataForm"));
+		
+		if(!submit_data.source_url){
+			msgAlert({msg : "URL不能未空！"});
+			return;
+		}
+		
+		loading("open","数据处理中");
+		normalSubmitFormData(submit_url,submit_data,function(data){
+			if(data.message){
+				msgAlert({msg:data.message},function(){
+                    loading("close");
+					parent.refreshPageList();
+					parent.closeUrlWin();
+				});
+			}
+		});
+	}
+</script>
+</html>

@@ -73,7 +73,7 @@ button, input, optgroup, option, select, textarea {
 pre {
     white-space: pre-wrap;
     white-space: -moz-pre-wrap;
-    white-space: -pre-wrap;
+    /*white-space: -pre-wrap;*/
     white-space: -o-pre-wrap;
     word-wrap: break-word
 }
@@ -180,8 +180,8 @@ a cite {
 
 @font-face {
     font-family: layui-icon;
-    src: url(../font/iconfont.eot?v=256);
-    src: url(../font/iconfont.eot?v=256#iefix) format('embedded-opentype'), url(../font/iconfont.woff2?v=256) format('woff2'), url(../font/iconfont.woff?v=256) format('woff'), url(../font/iconfont.ttf?v=256) format('truetype'), url(../font/iconfont.svg?v=256#layui-icon) format('svg')
+    src: url(css/font/iconfont.eot?v=256);
+    src: url(css/font/iconfont.eot?v=256#iefix) format('embedded-opentype'), url(css/font/iconfont.woff2?v=256) format('woff2'), url(css/font/iconfont.woff?v=256) format('woff'), url(css/font/iconfont.ttf?v=256) format('truetype'), url(css/font/iconfont.svg?v=256#layui-icon) format('svg')
 }
 
 .layui-icon {
@@ -2330,7 +2330,7 @@ a cite {
 }
 
 :root .layui-form-selected .layui-edge {
-    margin-top: -9px \0/ IE9
+    /*margin-top: -9px IE9*/
 }
 
 .layui-form-selectup dl {
@@ -4051,7 +4051,7 @@ body .layui-table-tips .layui-layer-content {
 }
 
 :root .layui-tab-more .layui-tab-bar .layui-icon {
-    top: -2px \0/ IE9
+    /*top: -2px \0/ IE9*/
 }
 
 .layui-tab-content {

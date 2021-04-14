@@ -61,12 +61,12 @@ public class TokenUse {
         try {
             Algorithm algorithm = Algorithm.HMAC256(tokenSecRet);
             JWTVerifier verifier = JWT.require(algorithm).build();
-            System.out.println(verifier+"token验证");
+            System.out.println(verifier);
             //验证
             DecodedJWT decodedJWT = verifier.verify(token);
             return true;
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("token验证失败");
             return false;
         }
     }
@@ -82,3 +82,4 @@ public class TokenUse {
         return decodedJWT.getClaim("name").toString();
     }
 }
+

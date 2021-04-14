@@ -3,7 +3,7 @@ spring:
     name: test
     url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
     username: root
-    password: 145112
+    password: founder123
     driver-class-name: com.mysql.cj.jdbc.Driver
   mvc:
     static-path-pattern: /**
@@ -20,3 +20,7 @@ spring:
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.example.demo.bean
+server:
+  port: 8088
+  servlet:
+    context-path: /springbootWeb

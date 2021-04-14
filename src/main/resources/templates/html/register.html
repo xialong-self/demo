@@ -3,8 +3,9 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>register</title>
-    <script type="text/javascript" src="jquery-3.5.1.js"></script>
+    <title>注册</title>
+    <script type="text/javascript" src="/springbootWeb/jquery-3.5.1.js"></script>
+    <link rel="icon" href="/springbootWeb/img/favicon/favicon.ico" type="image/x-icon">
     <style>
         * {
             margin: 0;
@@ -17,7 +18,7 @@
             overflow: hidden;
             margin: 0;
             padding: 0;
-            background: url(/img/bj.jpg) no-repeat 0px 0px;
+            background: url(/springbootWeb/img/bj.jpg) no-repeat 0px 0px;
             background-size: 100% 100%;
             -moz-background-size: 100% 100%;
         }
@@ -250,7 +251,7 @@
             $.ajax({
                 type: "POST",//方法类型，或者用GET
                 dataType: "json",//预期服务器返回的数据类型，可以改成json
-                url: "/loginUserInsert",//ip:端口/项目名称/Servlet名称
+                url: "/springbootWeb/loginUserInsert",//ip:端口/项目名称/Servlet名称
                 data: $('#insert').serialize(),//获取表单里的数据到这里
                 success: function (result) {
                     if (result["num"] == 0) {

@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.io.UnsupportedEncodingException;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
@@ -74,13 +75,13 @@ public class DemoApplicationTests {
     }
 
 
-    @Test
-    public void save(){
-        Date date= DateTimeUtils.StringToDate(DateTimeUtils.getSystemDateTimeString(),"yyyy-MM-dd HH:mm:ss");
-        Timestamp sqlDate = new Timestamp(date.getTime());
-        MessageBean messageBean= new MessageBean("14","111",sqlDate);
-                messageService.save(messageBean);
-    }
+//    @Test
+//    public void save(){
+//        Date date= DateTimeUtils.StringToDate(DateTimeUtils.getSystemDateTimeString(),"yyyy-MM-dd HH:mm:ss");
+//        Timestamp sqlDate = new Timestamp(date.getTime());
+//        MessageBean messageBean= new MessageBean("14","111",sqlDate);
+//                messageService.save(messageBean);
+//    }
 
     @Test
     public void leave(){
@@ -89,6 +90,14 @@ public class DemoApplicationTests {
 
     }
 
+
+    @Test
+    public void tokenx()   {
+        String token="eyJ0eXBlIjoiSldUIiwiYWxnIjoiSFMyNTYiLCJ0eXAiOiJKV1QifQ.eyJwYXNzd29yZCI6IjAxMiIsIm5hbWUiOiLlpI_pvpkiLCJUaW1lIjoxNjE1NDMyNjY4MDY3LCJleHAiOjE2MTU0MzQ0Njh9.0w2FquQJC7EqZXQjivNHQcFFvBxTq22Kq7n-mxd0qEQ";
+
+        System.out.println(TokenUse.tokenVerify(token));
+
+    }
 
     @Test
     public void contextLoads() {

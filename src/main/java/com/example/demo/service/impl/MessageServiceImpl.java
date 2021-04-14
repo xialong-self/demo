@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -35,5 +36,10 @@ public class MessageServiceImpl implements MessageService {
     @Override
     public void save(MessageBean messageBean) {
          messageMapper.save(messageBean);
+    }
+
+    @Override
+    public List<MessageBean> messageList() {
+        return messageMapper.listMessage();
     }
 }

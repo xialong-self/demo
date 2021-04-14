@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>AJAX TEST</title>
-    <script type="text/javascript" src="../jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="/springbootWeb/jquery-3.5.1.js"></script>
+    <link rel="icon" href="/springbootWeb/img/favicon/favicon.ico" type="image/x-icon">
 </head>
 <body>
 
@@ -11,22 +12,29 @@
 
 <form id="upload" >
     <input name="id" id="id"  >
-    <input type="button" value=" 保  存 " onclick="login()"/>
+    <input type="button" value="查询" onclick="login()"/>
 </form>
 <form id="insert" >
     <input name="message" id="message"  >
     <input type="button" value="提交" onclick="insert()"/>
 </form>
     <script type="text/javascript">
+        function ACToken() {
+                if(localStorage.getItem("token")==null){
+                   alert("请登录")
+                }
+        }
         function login() {
+            ACToken()
             $.ajax({
+                headers: {
+                    "token": localStorage.getItem("token"),//此处放置请求到的用户token
+                    "token2": "token_value"
+                },
                 type: "GET",//方法类型，或者用GET
                 dataType: "json",//预期服务器返回的数据类型，可以改成json
-                url: "/getMessage" ,//ip:端口/项目名称/Servlet名称
+                url: "/springbootWeb/getMessage" ,//ip:端口/项目名称/Servlet名称
                 data: $('#upload').serialize(),//获取表单里的数据到这里
-                beforeSend: function (request) {
-                    request.setRequestHeader("token", localStorage.token);
-                },
                 success: function (result) {
                     if (result["message"]!= null) {
                         alert(result["message"]);
@@ -38,10 +46,14 @@
             });
         };
         function insert() {
+            ACToken()
             $.ajax({
+                headers: {
+                    "token": localStorage.getItem("token")//此处放置请求到的用户token
+                },
                 type: "POST",//方法类型，或者用GET
                 dataType: "json",//预期服务器返回的数据类型，可以改成json
-                url: "/inertMessage" ,//ip:端口/项目名称/Servlet名称
+                url: "/springbootWeb/inertMessage" ,//ip:端口/项目名称/Servlet名称
                 data: $('#insert').serialize(),//获取表单里的数据到这里
                 success: function (result) {
                     if (result["msg"]!= null) {

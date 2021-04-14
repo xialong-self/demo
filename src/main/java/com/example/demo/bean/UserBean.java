@@ -8,7 +8,7 @@ import java.util.Objects;
  * @date 2020-11-26
  */
 @Entity
-@Table(name = "user", schema = "test", catalog = "")
+@Table(name = "user", schema = "test")
 public class UserBean {
     private String id;
     private String name;

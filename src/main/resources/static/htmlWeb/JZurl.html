@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>有趣网站地址导航 </title>
+    <script type="text/javascript" src="/springbootWeb/jquery-3.5.1.js"></script>
+    <link rel="icon" href="/springbootWeb/img/favicon/favicon.ico" type="image/x-icon">
+    <style>
+        /* ================ reset 样式 start  ================ */
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: "微软雅黑";
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        body,
+        ul,
+        li,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        p,
+        form,
+        dl,
+        dt,
+        dd {
+            margin: 0px;
+            padding: 0px;
+            font-size: 14px;
+            font-weight: normal;
+        }
+
+        img {
+            border-style: none;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none
+        }
+
+        html,
+        body {
+            background: #fff;
+            height: 100%;
+
+        }
+
+        input[type="button"],
+        input[type="submit"],
+        input[type="reset"] {
+            -webkit-appearance: none;
+            outline: 0;
+        }
+
+        textarea {
+            -webkit-appearance: none;
+        }
+
+        /* ================ reset 样式 end  ================ */
+
+        .inner-center {
+            width: 1000px;
+            margin: 0 auto;
+
+        }
+
+        .main {
+            padding-top: 5%;
+            min-height: 100%;
+
+        }
+
+        .content-inside {
+            padding-bottom: 60px;
+        }
+
+        .footer {
+            height: 60px;
+            text-align: center;
+            margin-top: -60px;
+        }
+
+        /*  导航内容 start  */
+        .nav-content {
+            overflow: hidden;
+        }
+
+        /*  导航内容 end  */
+
+        /*内容区域*/
+
+        /*----------------样式定义- 开始----------------*/
+
+        .cc-list {
+            width: 33.33%;
+            float: left;
+            margin-bottom: 30px;
+            padding-right: 16px;
+        }
+
+        .cc-list:nth-of-type(3n) {
+            padding-right: 0;
+        }
+
+        .cc-list-tit {
+            font-size: 16px;
+            line-height: 25px;
+            color: rgba(49, 70, 89, 1);
+            font-weight: bold;
+        }
+
+        .cc-list-con {
+            overflow: hidden;
+            margin: 0 auto;
+
+        }
+
+        .cc-list-con li {
+            box-sizing: border-box;
+            padding: 1px 1px;
+            width: 33.33%;
+            float: left;
+        }
+
+        .cc-list-link {
+            display: block;
+            background: rgba(230, 247, 255, 0.96);
+            color: rgba(49, 70, 89, 1);
+            font-size: 13px;
+            text-align: center;
+            line-height: 44px;
+            transition: all 0.2s;
+            border-radius: 2px;
+        }
+
+        .cc-list-link:hover {
+            background: #1890FF 100%;
+            font-size: 14px;
+            font-weight: bold;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+<div class="inner-center main">
+    <div class="content-inside">
+        <div class="nav-content">
+
+            <div class="cc-list">
+                <div class="cc-list-tit">公安系统</div>
+                <ul class="cc-list-con">
+                    <li><a href="http://www.jwzh.sc/" class="cc-list-link" target="_blank">警综平台</a></li>
+                    <li><a href="http://www.px.jwzh.sc" class="cc-list-link" target="_blank">培训平台</a></li>
+                    <li><a href="http://80.2.21.252:3207/index.html#/" class="cc-list-link" target="_blank">基层数据服务</a></li>
+                </ul>
+            </div>
+            <div class="cc-list">
+                <div class="cc-list-tit">大数据系统</div>
+                <ul class="cc-list-con">
+                    <li><a
+                            href="http://80.2.40.175:7180/cmf/login" class="cc-list-link" target="_blank">CDH培训环境</a></li>
+                    <li><a href="http://80.2.36.27:7180/cmf/login" class="cc-list-link"
+                           target="_blank">CDH正式环境</a></li>
+                    <li><a href="http://80.2.36.27:8888/hue/accounts/login?next=/" class="cc-list-link" target="_blank">正式环境HUE</a>
+                    </li>
+                    <li><a href="http://80.2.36.29:28081/history" class="cc-list-link"
+                           target="_blank">正式环境AZKABAN</a></li>
+                    <li><a href="http://80.2.40.200:28081/history" class="cc-list-link" target="_blank">培训环境AZKABAN</a></li>
+                    <li><a href="http://80.2.36.28:7070/kylin/login" class="cc-list-link" target="_blank">正式环境Kylin</a></li>
+                    <li><a href="http://80.2.36.28:5601/app/kibana#/dev_tools/console?_g=()" class="cc-list-link" target="_blank">正式环境Kibana</a></li>
+                    <li><a href="http://80.2.41.11/html/mainPage.html" class="cc-list-link" target="_blank">大数据-数据质量分析系统</a></li>
+                    <li><a href="http://80.2.41.11:8081/query/index.html" class="cc-list-link" target="_blank">Elasticsearch-sql client</a></li>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="cc-list">
+                <div class="cc-list-tit">相关服务1</div>
+                <ul class="cc-list-con">
+                    <li><a href="http://80.197.1.39:3300/#/" class="cc-list-link" target="_blank">Hooker</a></li>
+                    <li><a href="http://80.2.41.11:8081/index.html" class="cc-list-link" target="_blank">jwzh-es-tools</a></li>
+                    <li><a href="https://80.2.21.211:31860/#!/login" class="cc-list-link" target="_blank">K8S</a></li>
+                    <li><a href="http://80.2.33.93/loginpage" class="cc-list-link" target="_blank">国内出港旅客管控系统</a></li>
+                    <li><a href="https://152.9.20.18:28443/web" class="cc-list-link" target="_blank">HUAWEI:FusionInsight Manager</a></li>
+                    <li><a href="http://80.2.33.96:8090/html/mainPage.html" class="cc-list-link"
+                           target="_blank">方正-华为大数据平台</a></li>
+                </ul>
+            </div>
+
+            <!--
+                <div class="cc-list">
+                  <div class="cc-list-tit">名称</div>
+                  <ul class="cc-list-con">
+                    <li><a href="" class="cc-list-link" target="_blank"></a></li>
+                  </ul>
+                </div>
+                新增类别复制cc-list即可,a标签建议6字以内 -->
+
+        </div>
+    </div>
+</div>
+<footer class="inner-center footer">
+    <p style="margin-top:8px;"><a href="#" style="color:#8C8C8C;" target="_blank">Copyright © 2020 Lucky boy 夏龙Web</a>
+    </p>
+</footer>
+
+
+<script type="text/javascript">
+    // alert(localStorage.getItem("token"));
+    window.onload = function requestData() {
+        $.ajax({
+            headers: {
+                "token": localStorage.getItem("token"),//此处放置请求到的用户token
+            },
+            url: "/springbootWeb/listMessage",
+            type: "GET",
+            dataType: "json",
+            success: function (data) {
+                /*这个方法里是ajax发送请求成功之后执行的代码*/
+
+            },
+            error: function (msg) {
+                window.location.href = '/springbootWeb/login'
+            }
+        });
+    };
+
+    //整个页面刷新30min一次
+    function Refresh() {
+        window.location.reload();
+    }
+
+    setTimeout('Refresh()', 1800000);
+
+</script>
+
+
+</body>
+
+</html>
+

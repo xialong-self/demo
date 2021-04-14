@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<script>document.write('\<script src="founderWeb/js/include/commonInclude.js?v=' + Math.random() + '"\>\<\/script\>');</script>
+<script>document.write('\<link href="founderWeb/bootstrap/css/bootstrap-table.min.css?v=' + localVersion + '" rel="stylesheet" />');</script>
+<script>document.write('\<script src="founderWeb/bootstrap/js/bootstrap-table.min.js?v=' + localVersion + '"\>\<\/script\>');</script>
+<script>document.write('\<script src="founderWeb/js/founder/founder.pagelist.js?v=' + localVersion + '"\>\<\/script\>');</script>
+<script>document.write('\<script src="founderWeb/bootstrap/js/bootstrap-table-zh-CN.min.js?v=' + localVersion + '"\>\<\/script\>');</script>
+<script>document.write('\<script src="founderWeb/js/founder/founder.formTools.js?v=' + localVersion + '"\>\<\/script\>');</script>
+</head>
+<body>
+    <div id="toolbar" >
+        <button id="btn_add" type="button" class="btn btn-default btn" onclick="openAddWin()">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+        </button>
+    </div>
+    <table id="dataGrid"></table>
+
+</body>
+
+<script type="text/javascript">
+var columns_config = [];
+columns_config[columns_config.length]={field: 'id',title: '任务ID',align: 'center',valign: 'middle'};
+columns_config[columns_config.length]={field: 'source_type',title: '数据源类型',align: 'center',valign: 'middle'};
+columns_config[columns_config.length]={field: 'source_url',title: 'URL',align: 'center',valign: 'middle'};
+columns_config[columns_config.length]={field: 'source_username',title: '用户',align: 'center',valign: 'middle'};
+columns_config[columns_config.length]={field: 'xt_lrsj',title: '录入时间',align: 'center',valign: 'middle',visible:false};
+columns_config[columns_config.length]={field: 'xt_zhxgsj',title: '最后修改时间',align: 'center',valign: 'middle'};
+
+columns_config[columns_config.length]={title: '操作',align: 'center',valign: 'middle',width: 180,
+        formatter: function (value, row, index) {
+        	var html ='<a class="btn btn-link" onclick="detailRow(\''+row.id+'\')">详情</a>';
+        	if(row.xt_zxbz=='0'){
+        		html += '<a class="btn btn-link" onclick="modifyRow(\''+row.id+'\')">修改</a>';
+        		html += '<a class="btn btn-link" onclick="disableRow(\''+row.id+'\')">停用</a>';
+        	}else{
+        		html += '<a class="btn btn-link" onclick="enableRow(\''+row.id+'\')">启用</a>';
+        	}
+            return html;
+        }
+    };
+
+
+$(function(){
+	getSessionInfo();	
+});
+
+var session;
+
+function afterLoadInit(sessionBean){
+	if(sessionBean){
+		session = sessionBean;
+		var page_config = {
+		    tableId: 'dataGrid',
+			url: basePath+'/datasource/queryPageList',
+	        columns: columns_config
+		};
+		initPageListTable(page_config);
+	}else{
+		topMsgAlert({msg : "请先登录"},function(){
+			location.href=basePath;
+		});
+	}
+}
+
+//打开新增任务的窗口
+function openAddWin(){
+	openUrlWin(basePath+"/html/datasource/formPage.html",{winName:"新增",width:"800px",height:"200px"});
+}
+
+//详情
+function detailRow(id){
+	openUrlWin(basePath+"/html/datasource/detailPage.html?id="+id,{winName:"详情",width:"800px",height:"240px",noSubmit : true});
+}
+
+//修改
+function modifyRow(id){
+	openUrlWin(basePath+"/html/datasource/formPage.html?id="+id,{winName:"修改",width:"800px",height:"200px"});
+}
+
+//启用
+function enableRow(id){
+	loading("open","数据处理中");
+	normalSubmitFormData(basePath+"/datasource/enable",{"id":id},function(data){
+		if(data.message){
+			msgAlert({msg:data.message},function(){
+                loading("close");
+				refreshPageList();
+			});
+		}
+	});
+}
+
+//停用
+function disableRow(id){
+	openUrlWin(basePath+"/html/datasource/disablePage.html?id="+id,{winName:"停用",width:"400px",height:"100px"});
+}
+
+function refreshPageList(){
+    $("[name=refresh]").click();
+}
+
+function getPageListParam(){
+	return {};
+}
+</script>
+</html>
